@@ -51,6 +51,9 @@
 
                 <ul class="nav navbar-nav text-uppercase pull-right">
                   @if(Auth::check())
+                    @if(Auth::user()->is_admin)
+                  <li><a href="/admin">Admin panel</a></li>
+                  @endif
                   <li><a href="{{ route('new.post.create') }}">New post</a></li>
                   <li><a href="{{ route('profie.posts.show', Auth::user()->id) }}">My posts</a></li>
                   <li><a href="/profile">{{ Auth::user()->name }}'s profile</a></li>
