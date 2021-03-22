@@ -14,6 +14,9 @@ class HomeController extends Controller
     public function index()
     {
       $posts = Post::where('status', Post::IS_PUBLIC)->paginate(2);
+      $popularPosts = Post::orderBy('views', 'desc')->take(3)->get();
+      $recentPosts = Post::orderBy('date', 'desc')->take(4)->get();
+      $categories = Category::all();
       return view('pages.index', compact('posts', 'popularPosts', 'recentPosts', 'categories'));
     }
 
